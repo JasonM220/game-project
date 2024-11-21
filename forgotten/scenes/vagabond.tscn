@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://j24yk617pp11"]
+[gd_scene load_steps=65 format=3 uid="uid://j24yk617pp11"]
 
 [ext_resource type="Script" path="res://scripts/vagabond.gd" id="1_xmx3j"]
 [ext_resource type="Texture2D" uid="uid://b1mcjxenf0ich" path="res://assets/sprites/vagabond/attack/attack01.png" id="2_4mtf6"]
@@ -18,17 +18,27 @@
 [ext_resource type="Texture2D" uid="uid://xg07qmpbfpdq" path="res://assets/sprites/vagabond/attack/attack05.png" id="6_ihwke"]
 [ext_resource type="Texture2D" uid="uid://celv5mutsofnx" path="res://assets/sprites/vagabond/death/death05.png" id="6_p1y45"]
 [ext_resource type="Texture2D" uid="uid://dn2s3h3ar1ksi" path="res://assets/sprites/vagabond/idle/idle06.png" id="7_7jlxp"]
+[ext_resource type="Texture2D" uid="uid://chcu1h03ox27x" path="res://assets/sprites/vagabond/attack/attack06.png" id="7_joj4o"]
 [ext_resource type="Texture2D" uid="uid://cf48ybuu43ff6" path="res://assets/sprites/vagabond/death/death06.png" id="7_ud4ha"]
 [ext_resource type="Texture2D" uid="uid://2aee2nginmqf" path="res://assets/sprites/vagabond/death/death07.png" id="8_duylg"]
+[ext_resource type="Texture2D" uid="uid://duhj66miudx1k" path="res://assets/sprites/vagabond/attack/attack07.png" id="8_mwvad"]
 [ext_resource type="Texture2D" uid="uid://ymxavjwbb54h" path="res://assets/sprites/vagabond/idle/idle07.png" id="8_xjdlw"]
+[ext_resource type="Texture2D" uid="uid://jd2m7kaex77f" path="res://assets/sprites/vagabond/attack/attack08.png" id="9_6gbnq"]
 [ext_resource type="Texture2D" uid="uid://ujp6ckbd562m" path="res://assets/sprites/vagabond/idle/idle08.png" id="9_asr0c"]
 [ext_resource type="Texture2D" uid="uid://djmi1xm2jqamm" path="res://assets/sprites/vagabond/idle/idle09.png" id="10_aom8w"]
+[ext_resource type="Texture2D" uid="uid://b3penm6bxyxwk" path="res://assets/sprites/vagabond/attack/attack09.png" id="10_p47ok"]
+[ext_resource type="Texture2D" uid="uid://wuhfdwaxnhmx" path="res://assets/sprites/vagabond/attack/attack10.png" id="11_ef1dn"]
 [ext_resource type="Texture2D" uid="uid://dk233tsrkb8yx" path="res://assets/sprites/vagabond/idle/idle10.png" id="11_joj13"]
+[ext_resource type="Texture2D" uid="uid://ckioxoree0emm" path="res://assets/sprites/vagabond/attack/attack11.png" id="12_f3hno"]
 [ext_resource type="Texture2D" uid="uid://csnaef7jdixy5" path="res://assets/sprites/vagabond/idle/idle11.png" id="12_mp1gk"]
+[ext_resource type="Texture2D" uid="uid://boqn7gtfo2yli" path="res://assets/sprites/vagabond/attack/attack12.png" id="13_2nw23"]
 [ext_resource type="Texture2D" uid="uid://hul4lswccupk" path="res://assets/sprites/vagabond/idle/idle12.png" id="13_6vis8"]
+[ext_resource type="Texture2D" uid="uid://bm3cb1m887jaf" path="res://assets/sprites/vagabond/attack/attack13.png" id="14_mmj2b"]
 [ext_resource type="Texture2D" uid="uid://bblffgevt1mbl" path="res://assets/sprites/vagabond/idle/idle13.png" id="14_w70un"]
+[ext_resource type="Texture2D" uid="uid://dwd0gck2xbavf" path="res://assets/sprites/vagabond/attack/attack14.png" id="15_rdixo"]
 [ext_resource type="Texture2D" uid="uid://cqwsxwpccku47" path="res://assets/sprites/vagabond/idle/idle14.png" id="15_ybwnu"]
 [ext_resource type="Texture2D" uid="uid://bdmaxjldibtrp" path="res://assets/sprites/vagabond/idle/idle15.png" id="16_jgyt7"]
+[ext_resource type="Texture2D" uid="uid://b7ns6oslw30gg" path="res://assets/sprites/vagabond/attack/attack15.png" id="16_wtosf"]
 [ext_resource type="Texture2D" uid="uid://cvvsr13akym1p" path="res://assets/sprites/vagabond/idle/idle16.png" id="17_hg5iy"]
 [ext_resource type="Texture2D" uid="uid://3rqy4d1b4vvo" path="res://assets/sprites/vagabond/idle/idle17.png" id="18_gcfrs"]
 [ext_resource type="Texture2D" uid="uid://cv0k78okpad8f" path="res://assets/sprites/vagabond/idle/idle18.png" id="19_1rde4"]
@@ -73,6 +83,46 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_joj4o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mwvad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6gbnq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_p47ok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ef1dn")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_f3hno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2nw23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mmj2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rdixo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_wtosf")
+}],
+"loop": false,
+"name": &"attack3",
 "speed": 10.0
 }, {
 "frames": [{
@@ -213,11 +263,6 @@ animations = [{
 "loop": true,
 "name": &"move",
 "speed": 10.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blsat"]
@@ -232,8 +277,10 @@ hurt_sound = NodePath("AudioStreamPlayer2D")
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_teqna")
-animation = &"new_animation"
+animation = &"attack3"
 autoplay = "idle"
+frame = 4
+frame_progress = 1.0
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -10)
