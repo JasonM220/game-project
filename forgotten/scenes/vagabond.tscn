@@ -1,16 +1,21 @@
-[gd_scene load_steps=49 format=3 uid="uid://j24yk617pp11"]
+[gd_scene load_steps=55 format=3 uid="uid://j24yk617pp11"]
 
 [ext_resource type="Script" path="res://scripts/vagabond.gd" id="1_xmx3j"]
+[ext_resource type="Texture2D" uid="uid://b1mcjxenf0ich" path="res://assets/sprites/vagabond/attack/attack01.png" id="2_4mtf6"]
 [ext_resource type="Texture2D" uid="uid://dijhyc6jxemrs" path="res://assets/sprites/vagabond/death/death01.png" id="2_4yj44"]
 [ext_resource type="Texture2D" uid="uid://cfu1x4qmoxqg2" path="res://assets/sprites/vagabond/idle/idle01.png" id="2_i0ki3"]
 [ext_resource type="Texture2D" uid="uid://dxgldrgg2n6ii" path="res://assets/sprites/vagabond/jump/jump03.png" id="2_oby6r"]
 [ext_resource type="Texture2D" uid="uid://cia5wm3wgxkx4" path="res://assets/sprites/vagabond/death/death02.png" id="3_62iae"]
 [ext_resource type="Texture2D" uid="uid://r2hcoqjuq3d6" path="res://assets/sprites/vagabond/idle/idle02.png" id="3_hcxj0"]
+[ext_resource type="Texture2D" uid="uid://dt1666f0wxgm6" path="res://assets/sprites/vagabond/attack/attack02.png" id="3_y1g32"]
 [ext_resource type="Texture2D" uid="uid://yd4tvrn6tqj0" path="res://assets/sprites/vagabond/death/death03.png" id="4_heomt"]
 [ext_resource type="Texture2D" uid="uid://ba7qo3y50i81w" path="res://assets/sprites/vagabond/idle/idle03.png" id="4_ijbeg"]
+[ext_resource type="Texture2D" uid="uid://c8v3dbas1oqtg" path="res://assets/sprites/vagabond/attack/attack03.png" id="4_nr3ig"]
 [ext_resource type="Texture2D" uid="uid://bsyqrokvhek5s" path="res://assets/sprites/vagabond/death/death04.png" id="5_3ocgs"]
 [ext_resource type="Texture2D" uid="uid://cb6222bcs5h4w" path="res://assets/sprites/vagabond/idle/idle04.png" id="5_8dxds"]
+[ext_resource type="Texture2D" uid="uid://crvqw5cfgwwt1" path="res://assets/sprites/vagabond/attack/attack04.png" id="5_jnvag"]
 [ext_resource type="Texture2D" uid="uid://b7ju74slxbaes" path="res://assets/sprites/vagabond/idle/idle05.png" id="6_5u56i"]
+[ext_resource type="Texture2D" uid="uid://xg07qmpbfpdq" path="res://assets/sprites/vagabond/attack/attack05.png" id="6_ihwke"]
 [ext_resource type="Texture2D" uid="uid://celv5mutsofnx" path="res://assets/sprites/vagabond/death/death05.png" id="6_p1y45"]
 [ext_resource type="Texture2D" uid="uid://dn2s3h3ar1ksi" path="res://assets/sprites/vagabond/idle/idle06.png" id="7_7jlxp"]
 [ext_resource type="Texture2D" uid="uid://cf48ybuu43ff6" path="res://assets/sprites/vagabond/death/death06.png" id="7_ud4ha"]
@@ -46,9 +51,30 @@
 [ext_resource type="Script" path="res://scripts/fall.gd" id="37_tggdf"]
 [ext_resource type="Script" path="res://scripts/die.gd" id="38_64pr2"]
 [ext_resource type="AudioStream" uid="uid://dl0ig1pb2wavw" path="res://assets/sounds/hurt.wav" id="46_n3514"]
+[ext_resource type="Script" path="res://scripts/attack.gd" id="51_ivk1r"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teqna"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4mtf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y1g32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nr3ig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jnvag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ihwke")
+}],
+"loop": false,
+"name": &"attack1",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_4yj44")
@@ -153,9 +179,6 @@ animations = [{
 "texture": ExtResource("23_dg3jf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_oby6r")
-}, {
-"duration": 1.0,
 "texture": ExtResource("24_uldx0")
 }],
 "loop": false,
@@ -190,6 +213,11 @@ animations = [{
 "loop": true,
 "name": &"move",
 "speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blsat"]
@@ -204,10 +232,8 @@ hurt_sound = NodePath("AudioStreamPlayer2D")
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_teqna")
-animation = &"die"
+animation = &"new_animation"
 autoplay = "idle"
-frame = 6
-frame_progress = 1.0
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -10)
@@ -217,18 +243,20 @@ shape = SubResource("RectangleShape2D_blsat")
 script = ExtResource("33_uj008")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "attack_state")]
 script = ExtResource("34_lhrsb")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
+attack_state = NodePath("../attack")
 animation_name = "idle"
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "attack_state")]
 script = ExtResource("36_x54no")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
+attack_state = NodePath("../attack")
 animation_name = "move"
 
 [node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state")]
@@ -251,8 +279,15 @@ animation_name = "die"
 
 [node name="Timer" type="Timer" parent="state_machine/die"]
 
+[node name="attack" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state")]
+script = ExtResource("51_ivk1r")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+animation_name = "attack1"
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("46_n3514")
 bus = &"SFX"
 
+[connection signal="animation_finished" from="animations" to="state_machine/attack" method="_on_animations_animation_finished"]
 [connection signal="timeout" from="state_machine/die/Timer" to="state_machine/die" method="_on_timer_timeout"]
