@@ -253,6 +253,7 @@ zoom = Vector2(4, 4)
 limit_bottom = 120
 limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 4.0
 
 [node name="ProgressBar" type="ProgressBar" parent="Vagabond"]
 offset_left = 13.0

@@ -87,7 +87,7 @@ scale = Vector2(0.367188, 0.4375)
 sprite_frames = SubResource("SpriteFrames_uvci7")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.166918
+frame_progress = 0.305773
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 256
