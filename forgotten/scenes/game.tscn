@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://n7extcx75p8e"]
+[gd_scene load_steps=17 format=3 uid="uid://n7extcx75p8e"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_tw8va"]
 [ext_resource type="FontFile" uid="uid://bb42ph22kr0xb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_gx64v"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bdil48gjdsh52" path="res://scenes/killzone.tscn" id="5_0qb21"]
 [ext_resource type="PackedScene" uid="uid://cryi3nfdutpqg" path="res://scenes/slime.tscn" id="6_e0pua"]
 [ext_resource type="FontFile" uid="uid://ch3g5ffnhlt1j" path="res://assets/fonts/PixelOperator8.ttf" id="8_50klq"]
+[ext_resource type="PackedScene" uid="uid://diwfjcwwf3dwq" path="res://scenes/enemyScenes/shooter.tscn" id="10_osoog"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8vyi1"]
 texture = ExtResource("2_kd4g8")
@@ -307,8 +308,8 @@ libraries = {
 }
 autoplay = "move"
 
-[node name="Slime2" parent="." instance=ExtResource("6_e0pua")]
-position = Vector2(505, 64)
+[node name="Slime" parent="." instance=ExtResource("6_e0pua")]
+position = Vector2(145, 62)
 
 [node name="Labels" type="Node" parent="."]
 
@@ -342,5 +343,5 @@ theme_override_fonts/font = ExtResource("8_50klq")
 theme_override_font_sizes/font_size = 8
 text = "Almost there..."
 
-[node name="Slime" parent="." instance=ExtResource("6_e0pua")]
-position = Vector2(145, 62)
+[node name="Shooter" parent="." instance=ExtResource("10_osoog")]
+position = Vector2(548, 63)

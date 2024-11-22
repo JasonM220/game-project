@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://diwfjcwwf3dwq"]
+
+[ext_resource type="Script" path="res://scripts/enemies/shooter/node_2d.gd" id="1_yjxcu"]
+[ext_resource type="Texture2D" uid="uid://b4grt03n0r541" path="res://assets/sprites/Samurai_Archer/Walk.png" id="2_dq7qv"]
+[ext_resource type="Script" path="res://scenes/generalScenes/hitbox.gd" id="3_m40ej"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkrcp"]
+atlas = ExtResource("2_dq7qv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47ep2"]
+atlas = ExtResource("2_dq7qv")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wcrv"]
+atlas = ExtResource("2_dq7qv")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpxf2"]
+atlas = ExtResource("2_dq7qv")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfd4l"]
+atlas = ExtResource("2_dq7qv")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v4n5"]
+atlas = ExtResource("2_dq7qv")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlsyf"]
+atlas = ExtResource("2_dq7qv")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vllf0"]
+atlas = ExtResource("2_dq7qv")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uvci7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkrcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47ep2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wcrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpxf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfd4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v4n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlsyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vllf0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qqpx"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81qqq"]
+size = Vector2(16.5, 31.5)
+
+[node name="Shooter" type="Node2D" node_paths=PackedStringArray("ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box")]
+script = ExtResource("1_yjxcu")
+ray_cast_right = NodePath("RayCastRight")
+ray_cast_left = NodePath("RayCastLeft")
+animated_sprite = NodePath("AnimatedSprite2D")
+hit_box = NodePath("HitBox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-35.5, -28)
+scale = Vector2(0.367188, 0.4375)
+sprite_frames = SubResource("SpriteFrames_uvci7")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.166918
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("3_m40ej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-38, -16)
+shape = SubResource("RectangleShape2D_5qqpx")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-41, -17)
+target_position = Vector2(-11, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(-38, -17)
+target_position = Vector2(16, 0)
+
+[node name="Collision" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Collision"]
+position = Vector2(-38.25, -15.75)
+shape = SubResource("RectangleShape2D_81qqq")

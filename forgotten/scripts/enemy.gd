@@ -1,17 +1,17 @@
-extends Node2D
+class_name Enemy extends Node2D
 
 
 const SPEED = 60
 
 var direction = 1
 
-@onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hit_box: HitBox = $HitBox
+@export var ray_cast_right: RayCast2D
+@export var ray_cast_left: RayCast2D
+@export var animated_sprite: AnimatedSprite2D
+@export var hit_box: HitBox
 
 func _ready() -> void:
-	$HitBox.Damaged.connect(take_damage)
+	hit_box.Damaged.connect(take_damage)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

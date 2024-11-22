@@ -309,12 +309,14 @@ idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 attack_state = NodePath("../attack")
 animation_name = "move"
+move_speed = 150.0
 
 [node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state")]
 script = ExtResource("37_tggdf")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 animation_name = "fall"
+move_speed = 150.0
 
 [node name="jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
 script = ExtResource("35_tr2qj")
@@ -322,6 +324,7 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 animation_name = "jump"
+move_speed = 150.0
 
 [node name="die" type="Node" parent="state_machine" node_paths=PackedStringArray("timer")]
 script = ExtResource("38_64pr2")
