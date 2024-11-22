@@ -75,6 +75,7 @@ size = Vector2(16, 32)
 size = Vector2(16.5, 31.5)
 
 [node name="Shooter" type="Node2D" node_paths=PackedStringArray("ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box")]
+position = Vector2(0, 16)
 script = ExtResource("1_yjxcu")
 ray_cast_right = NodePath("RayCastRight")
 ray_cast_left = NodePath("RayCastLeft")
@@ -82,12 +83,12 @@ animated_sprite = NodePath("AnimatedSprite2D")
 hit_box = NodePath("HitBox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-35.5, -28)
+position = Vector2(2, -28)
 scale = Vector2(0.367188, 0.4375)
 sprite_frames = SubResource("SpriteFrames_uvci7")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.305773
+frame_progress = 0.998855
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 256
@@ -95,20 +96,24 @@ collision_mask = 0
 script = ExtResource("3_m40ej")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(-38, -16)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_5qqpx")
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-41, -17)
+position = Vector2(-3, -17)
 target_position = Vector2(-11, 0)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(-38, -17)
+position = Vector2(0, -17)
 target_position = Vector2(16, 0)
 
 [node name="Collision" type="Area2D" parent="."]
 collision_mask = 0
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Collision"]
-position = Vector2(-38.25, -15.75)
+position = Vector2(-0.25, -15.75)
 shape = SubResource("RectangleShape2D_81qqq")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

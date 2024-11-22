@@ -12,6 +12,7 @@ var direction = 1
 
 func _ready() -> void:
 	hit_box.Damaged.connect(take_damage)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
