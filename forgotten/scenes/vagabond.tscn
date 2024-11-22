@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://j24yk617pp11"]
+[gd_scene load_steps=67 format=3 uid="uid://j24yk617pp11"]
 
 [ext_resource type="Script" path="res://scripts/vagabond.gd" id="1_xmx3j"]
 [ext_resource type="Texture2D" uid="uid://b1mcjxenf0ich" path="res://assets/sprites/vagabond/attack/attack01.png" id="2_4mtf6"]
@@ -62,6 +62,7 @@
 [ext_resource type="Script" path="res://scripts/die.gd" id="38_64pr2"]
 [ext_resource type="AudioStream" uid="uid://dl0ig1pb2wavw" path="res://assets/sounds/hurt.wav" id="46_n3514"]
 [ext_resource type="Script" path="res://scripts/attack.gd" id="51_ivk1r"]
+[ext_resource type="Script" path="res://scenes/generalScenes/hurtbox.gd" id="63_7jkd0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teqna"]
 animations = [{
@@ -268,6 +269,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blsat"]
 size = Vector2(8, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plmdg"]
+size = Vector2(20, 25.4966)
+
 [node name="Vagabond" type="CharacterBody2D" node_paths=PackedStringArray("hurt_sound")]
 z_index = 5
 collision_layer = 2
@@ -336,5 +340,19 @@ animation_name = "attack1"
 stream = ExtResource("46_n3514")
 bus = &"SFX"
 
-[connection signal="animation_finished" from="animations" to="state_machine/attack" method="_on_animations_animation_finished"]
+[node name="Interactions" type="Node2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="Interactions"]
+collision_layer = 0
+collision_mask = 256
+monitoring = false
+monitorable = false
+script = ExtResource("63_7jkd0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox"]
+position = Vector2(16, -9.998)
+rotation = -1.56479
+shape = SubResource("RectangleShape2D_plmdg")
+debug_color = Color(0.992581, 0, 0.250025, 0.42)
+
 [connection signal="timeout" from="state_machine/die/Timer" to="state_machine/die" method="_on_timer_timeout"]

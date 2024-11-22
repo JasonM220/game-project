@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cryi3nfdutpqg"]
+[gd_scene load_steps=12 format=3 uid="uid://cryi3nfdutpqg"]
 
 [ext_resource type="Texture2D" uid="uid://62f3lur1mwl3" path="res://assets/sprites/slime_green.png" id="1_2kh2n"]
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_fof1n"]
 [ext_resource type="PackedScene" uid="uid://dbqmvewgghcgt" path="res://scenes/damagezone.tscn" id="3_olhnb"]
+[ext_resource type="Script" path="res://scenes/generalScenes/hitbox.gd" id="4_bam5k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vepy7"]
 atlas = ExtResource("1_2kh2n")
@@ -43,6 +44,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkdxk"]
 size = Vector2(10, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bno3"]
+size = Vector2(10, 12)
+
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_fof1n")
 
@@ -65,3 +69,13 @@ target_position = Vector2(9, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(1, -5)
 target_position = Vector2(-9, 0)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_bam5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, -6)
+shape = SubResource("RectangleShape2D_4bno3")

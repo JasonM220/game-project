@@ -1,5 +1,7 @@
 extends State
 
+@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
+
 @export
 var idle_state: State
 @export
@@ -13,8 +15,13 @@ func enter() -> void:
 	super()
 	if parent.animations.flip_h:
 		parent.animations.offset = Vector2(-32, 0)
+		hurt_box.position = Vector2(-34, 0)
 	else:
 		parent.animations.offset = Vector2(32, 0)
+		hurt_box.position = Vector2(0, 0)
+	await get_tree().create_timer(0.075).timeout
+	hurt_box.monitoring = true
+	parent.animations.animation_finished.connect(_on_animations_animation_finished)
 
 func exit() -> void:
 	super()
@@ -22,6 +29,10 @@ func exit() -> void:
 	finished = false
 	next_attack = 1
 	next_attack_queued= false
+	hurt_box.monitoring = false
+	parent.animations.animation_finished.disconnect(_on_animations_animation_finished)
+	
+
 	
 func process_frame(delta: float) -> State:
 	if finished:
