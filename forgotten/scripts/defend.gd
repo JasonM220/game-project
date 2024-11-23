@@ -1,6 +1,8 @@
 extends State
 
-@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
+@onready var defend_zone_left: Area2D = $"../../DefendZoneLeft"
+
+@onready var defend_zone_right: Area2D = $"../../DefendZoneRight"
 
 @export
 var idle_state: State
@@ -10,9 +12,18 @@ var move_state: State
 
 func enter() -> void:
 	super()
+	if parent.animations.flip_h:
+		defend_zone_left.monitorable = true
+	else:
+		defend_zone_right.monitorable = true
+
 
 func exit() -> void:
 	super()
+	defend_zone_right.monitorable = false
+	defend_zone_left.monitorable = false
+		
+	
 
 	
 

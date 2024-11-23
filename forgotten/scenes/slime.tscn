@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://62f3lur1mwl3" path="res://assets/sprites/slime_green.png" id="1_2kh2n"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_fof1n"]
-[ext_resource type="PackedScene" uid="uid://dbqmvewgghcgt" path="res://scenes/damagezone.tscn" id="3_olhnb"]
 [ext_resource type="Script" path="res://scenes/generalScenes/hitbox.gd" id="4_bam5k"]
+[ext_resource type="Script" path="res://scenes/generalScenes/hurtbox.gd" id="5_uxyjj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vepy7"]
 atlas = ExtResource("1_2kh2n")
@@ -41,13 +41,13 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkdxk"]
-size = Vector2(10, 12)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bno3"]
 size = Vector2(10, 12)
 
-[node name="Slime" type="Node2D" node_paths=PackedStringArray("ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0u5lx"]
+size = Vector2(10, 12)
+
+[node name="Slime" type="Node2D" node_paths=PackedStringArray("ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box") groups=["Enemy"]]
 script = ExtResource("1_fof1n")
 ray_cast_right = NodePath("RayCastRight")
 ray_cast_left = NodePath("RayCastLeft")
@@ -58,13 +58,6 @@ hit_box = NodePath("HitBox")
 position = Vector2(1, -12)
 sprite_frames = SubResource("SpriteFrames_yne0k")
 autoplay = "default"
-
-[node name="damagezone" parent="." instance=ExtResource("3_olhnb")]
-damage = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="damagezone"]
-position = Vector2(1, -6)
-shape = SubResource("RectangleShape2D_vkdxk")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(1, -5)
@@ -83,3 +76,10 @@ script = ExtResource("4_bam5k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(1, -6)
 shape = SubResource("RectangleShape2D_4bno3")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("5_uxyjj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -6)
+shape = SubResource("RectangleShape2D_0u5lx")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://j24yk617pp11"]
+[gd_scene load_steps=92 format=3 uid="uid://j24yk617pp11"]
 
 [ext_resource type="Script" path="res://scripts/vagabond.gd" id="1_xmx3j"]
 [ext_resource type="Texture2D" uid="uid://b1mcjxenf0ich" path="res://assets/sprites/vagabond/attack/attack01.png" id="2_4mtf6"]
@@ -84,6 +84,7 @@
 [ext_resource type="Script" path="res://scripts/attack.gd" id="51_ivk1r"]
 [ext_resource type="Script" path="res://scripts/defend.gd" id="62_th5cy"]
 [ext_resource type="Script" path="res://scenes/generalScenes/hurtbox.gd" id="63_7jkd0"]
+[ext_resource type="Script" path="res://scenes/generalScenes/hitbox.gd" id="85_3xc43"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teqna"]
 animations = [{
@@ -358,6 +359,15 @@ size = Vector2(8, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plmdg"]
 size = Vector2(20, 25.4966)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn4tt"]
+size = Vector2(8, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugygc"]
+size = Vector2(7.18619, 21.2185)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fni22"]
+size = Vector2(6.43405, 19.7182)
+
 [node name="Vagabond" type="CharacterBody2D" node_paths=PackedStringArray("hurt_sound")]
 z_index = 5
 collision_layer = 2
@@ -369,7 +379,8 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_teqna")
 animation = &"defend"
 autoplay = "idle"
-frame_progress = 0.975207
+frame_progress = 0.989375
+flip_h = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -10)
@@ -446,9 +457,40 @@ monitorable = false
 script = ExtResource("63_7jkd0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox"]
-position = Vector2(16, -9.998)
+position = Vector2(16, -10)
 rotation = -1.56479
 shape = SubResource("RectangleShape2D_plmdg")
 debug_color = Color(0.992581, 0, 0.250025, 0.42)
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("85_3xc43")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-1, -10)
+shape = SubResource("RectangleShape2D_mn4tt")
+
+[node name="DefendZoneRight" type="Area2D" parent="." groups=["DefendZone"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefendZoneRight"]
+position = Vector2(8.18146, -9.06927)
+rotation = -0.807455
+shape = SubResource("RectangleShape2D_ugygc")
+debug_color = Color(0, 0.648922, 0.163958, 0.42)
+
+[node name="DefendZoneLeft" type="Area2D" parent="." groups=["DefendZone"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefendZoneLeft"]
+position = Vector2(-9.3111, -8.56786)
+rotation = 0.744121
+shape = SubResource("RectangleShape2D_fni22")
+debug_color = Color(0, 0.64138, 0.335232, 0.42)
 
 [connection signal="timeout" from="state_machine/die/Timer" to="state_machine/die" method="_on_timer_timeout"]
