@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://diwfjcwwf3dwq"]
+[gd_scene load_steps=16 format=3 uid="uid://diwfjcwwf3dwq"]
 
 [ext_resource type="Script" path="res://scripts/enemies/shooter/node_2d.gd" id="1_yjxcu"]
 [ext_resource type="Texture2D" uid="uid://b4grt03n0r541" path="res://assets/sprites/Samurai_Archer/Walk.png" id="2_dq7qv"]
@@ -74,8 +74,12 @@ size = Vector2(16, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81qqq"]
 size = Vector2(16.5, 31.5)
 
-[node name="Shooter" type="Node2D" node_paths=PackedStringArray("ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jftek"]
+size = Vector2(16, 31)
+
+[node name="Shooter" type="CharacterBody2D" node_paths=PackedStringArray("ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box")]
 position = Vector2(0, 16)
+collision_layer = 0
 script = ExtResource("1_yjxcu")
 ray_cast_right = NodePath("RayCastRight")
 ray_cast_left = NodePath("RayCastLeft")
@@ -115,5 +119,9 @@ position = Vector2(-0.25, -15.75)
 shape = SubResource("RectangleShape2D_81qqq")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Collision2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15.5)
+shape = SubResource("RectangleShape2D_jftek")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

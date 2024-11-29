@@ -351,6 +351,6 @@ theme_override_font_sizes/font_size = 8
 text = "Almost there..."
 
 [node name="Shooter" parent="." instance=ExtResource("10_osoog")]
-position = Vector2(588, 63)
+position = Vector2(507, 62)
 
 [connection signal="Shoot" from="Shooter" to="BulletManager" method="_on_shooter_shoot"]

@@ -2,16 +2,20 @@ extends Area2D
 
 @onready var timer: Timer = $Timer
 
-var speed = 300
+var horizontal_speed = 300
+var vertical_speed = 0
 var direction : int
 
 var deflected = false
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	position.x += speed * direction * delta
+	position.x += horizontal_speed * direction * delta
+	position.y += vertical_speed * delta * -1
+	
 
 
 func _on_timer_timeout() -> void:
@@ -25,9 +29,6 @@ func _on_body_entered(body: Node2D) -> void:
 		queue_free()
 	print(body.name)
 	
-func deflect():
-	direction *= -1
-	timer.start()
 
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
@@ -36,6 +37,11 @@ func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, 
 		queue_free()
 	if area.is_in_group("DefendZone"):
 		print("defend")
-		direction *= -1
+		if Input.is_action_pressed("DeflectUp"):
+			print("defendUp")
+			vertical_speed = 300
+			horizontal_speed = 0
+		else:
+			direction *= -1
 		deflected = true
 		timer.start()
