@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 
-const SPEED = 60
+var speed = 60
 
 var direction = 1
 
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	if ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite	.flip_h = false
-	velocity.x = direction * SPEED
+	velocity.x = direction * speed
 	
 func take_damage(_damage: int) -> void:
 	print("die")
