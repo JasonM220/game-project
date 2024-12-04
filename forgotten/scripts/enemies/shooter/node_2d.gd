@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 	super(delta)
 	if can_shoot:
 		speed = 0
-		Shoot.emit(position, direction)
+		Shoot.emit(position, direction, Globals.bullet_types.Star)
 		animated_sprite_2d.play("shoot")
 		can_shoot = false
 		timer.start(1)

@@ -17,29 +17,29 @@ region = Rect2(48, 0, 48, 48)
 atlas = ExtResource("2_us8kk")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hg8r2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0vaj"]
 atlas = ExtResource("2_c1f03")
-region = Rect2(0, 0, 48, 48)
+region = Rect2(0, 0, 31, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pucnv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig78h"]
 atlas = ExtResource("2_c1f03")
-region = Rect2(48, 0, 48, 48)
+region = Rect2(50, 0, 25, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4voxa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhklh"]
 atlas = ExtResource("2_c1f03")
-region = Rect2(96, 0, 48, 48)
+region = Rect2(98, 0, 24, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n4esm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhpsu"]
 atlas = ExtResource("2_c1f03")
-region = Rect2(144, 0, 48, 48)
+region = Rect2(145, 0, 26, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_thx6s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjul0"]
 atlas = ExtResource("2_c1f03")
-region = Rect2(192, 0, 48, 48)
+region = Rect2(194, 0, 26, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aclp3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q3p8"]
 atlas = ExtResource("2_c1f03")
-region = Rect2(240, 0, 48, 48)
+region = Rect2(242, 0, 26, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uvci7"]
 animations = [{
@@ -59,22 +59,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hg8r2")
+"texture": SubResource("AtlasTexture_x0vaj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pucnv")
+"texture": SubResource("AtlasTexture_ig78h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4voxa")
+"texture": SubResource("AtlasTexture_qhklh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n4esm")
+"texture": SubResource("AtlasTexture_mhpsu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_thx6s")
+"texture": SubResource("AtlasTexture_pjul0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aclp3")
+"texture": SubResource("AtlasTexture_0q3p8")
 }],
 "loop": true,
 "name": &"walk",
@@ -100,13 +100,12 @@ animated_sprite = NodePath("AnimatedSprite2D")
 hit_box = NodePath("HitBox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(4, -11)
+position = Vector2(0, -11.2079)
 scale = Vector2(0.367188, 0.4375)
 sprite_frames = SubResource("SpriteFrames_uvci7")
-animation = &"shoot"
+animation = &"walk"
 autoplay = "walk"
-frame = 2
-frame_progress = 1.0
+frame_progress = 0.178435
 
 [node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
 collision_layer = 256

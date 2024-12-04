@@ -1,13 +1,24 @@
 extends Node2D
 
 @export var bullet_scene : PackedScene
+@export var star_bullet : PackedScene
 
 
-func _on_shooter_shoot(pos, dir) -> void:
-	var bullet = bullet_scene.instantiate()
-	add_child(bullet)
-	pos.y -= 10
-	bullet.position = pos
-	bullet.direction = dir
+func _on_shooter_shoot(pos, dir, type) -> void:
+	match type:
+		Globals.bullet_types.Normal:
+			var bullet = bullet_scene.instantiate()
+			add_child(bullet)
+			pos.y -= 10
+			bullet.position = pos
+			bullet.direction = dir
+		Globals.bullet_types.Star:
+			var bullet = star_bullet.instantiate()
+			add_child(bullet)
+			pos.y -= 10
+			bullet.position = pos
+			bullet.direction = dir
+			
+	
 	#bullet.add_to_group("bullets")  MIGHT NEED THIS lATER
 	

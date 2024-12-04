@@ -31,10 +31,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_30yob"]
 radius = 6.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" node_paths=PackedStringArray("timer")]
 collision_layer = 0
 collision_mask = 263
 script = ExtResource("1_u0bxy")
+timer = NodePath("Timer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p28rg")
@@ -45,7 +46,6 @@ frame_progress = 0.309443
 shape = SubResource("CircleShape2D_30yob")
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
