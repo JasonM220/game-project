@@ -1,0 +1,131 @@
+[gd_scene load_steps=17 format=3 uid="uid://bepwf6na538ra"]
+
+[ext_resource type="Script" path="res://scripts/enemies/drone/drone.gd" id="1_q4r0r"]
+[ext_resource type="Texture2D" uid="uid://cu33r8ebavjen" path="res://assets/sprites/Enemies/5/Attack.png" id="2_ksfh1"]
+[ext_resource type="Texture2D" uid="uid://nkqkpcwm5bx2" path="res://assets/sprites/Enemies/5/Walk.png" id="3_yd2yw"]
+[ext_resource type="Script" path="res://scenes/generalScenes/hitbox.gd" id="4_6ygrw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4v17"]
+atlas = ExtResource("2_ksfh1")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57gfd"]
+atlas = ExtResource("2_ksfh1")
+region = Rect2(49, 0, 28, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl88n"]
+atlas = ExtResource("2_ksfh1")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o78v"]
+atlas = ExtResource("2_ksfh1")
+region = Rect2(132, 0, 59, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0svhw"]
+atlas = ExtResource("3_yd2yw")
+region = Rect2(2, 0, 27, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u03s2"]
+atlas = ExtResource("3_yd2yw")
+region = Rect2(52, 0, 23, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsplu"]
+atlas = ExtResource("3_yd2yw")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33fmy"]
+atlas = ExtResource("3_yd2yw")
+region = Rect2(132, 0, 59, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqffn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4v17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57gfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl88n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o78v")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0svhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u03s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsplu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33fmy")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f4o3o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_00xlq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_io4to"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box")]
+collision_layer = 0
+script = ExtResource("1_q4r0r")
+timer = NodePath("Timer")
+ray_cast_right = NodePath("RayCastRight")
+ray_cast_left = NodePath("RayCastLeft")
+animated_sprite = NodePath("AnimatedSprite2D")
+hit_box = NodePath("HitBox")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9, 0)
+sprite_frames = SubResource("SpriteFrames_nqffn")
+animation = &"shoot"
+autoplay = "walk"
+frame = 3
+frame_progress = 1.0
+
+[node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("4_6ygrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-9, 2)
+shape = SubResource("CircleShape2D_f4o3o")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9, 2)
+shape = SubResource("CircleShape2D_00xlq")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(-8, 3)
+target_position = Vector2(11, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-8, 3)
+target_position = Vector2(-13, -1)
+
+[node name="Collision" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(-9, 2)
+shape = SubResource("CircleShape2D_io4to")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

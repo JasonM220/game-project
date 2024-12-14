@@ -2,10 +2,11 @@ class_name Shooter extends Enemy
 
 signal Shoot
 
-@onready var timer: Timer = $Timer
+@export var timer: Timer
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+
+var bullet: Globals.bullet_types = Globals.bullet_types.Normal
 
 var can_shoot = true
 
@@ -13,8 +14,8 @@ func _process(delta: float) -> void:
 	super(delta)
 	if can_shoot:
 		speed = 0
-		Shoot.emit(position, direction, Globals.bullet_types.Star)
-		animated_sprite_2d.play("shoot")
+		Shoot.emit(position, direction, bullet)
+		animated_sprite.play("shoot")
 		can_shoot = false
 		timer.start(1)
 	
@@ -24,6 +25,6 @@ func _on_timer_timeout() -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if animated_sprite_2d.animation == "shoot":
-		animated_sprite_2d.play("walk")
+	if animated_sprite.animation == "shoot":
+		animated_sprite.play("walk")
 		speed = 60

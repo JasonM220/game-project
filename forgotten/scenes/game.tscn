@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://n7extcx75p8e"]
+[gd_scene load_steps=24 format=3 uid="uid://n7extcx75p8e"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_tw8va"]
 [ext_resource type="FontFile" uid="uid://bb42ph22kr0xb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_gx64v"]
@@ -13,7 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://cryi3nfdutpqg" path="res://scenes/slime.tscn" id="6_e0pua"]
 [ext_resource type="PackedScene" uid="uid://b4ockdv7mr62j" path="res://scenes/enemyScenes/bulletStar.tscn" id="7_4b17u"]
 [ext_resource type="FontFile" uid="uid://ch3g5ffnhlt1j" path="res://assets/fonts/PixelOperator8.ttf" id="8_50klq"]
+[ext_resource type="PackedScene" uid="uid://df51mtp3ft8w1" path="res://scenes/enemyScenes/bulletDrone.tscn" id="8_iuejj"]
 [ext_resource type="PackedScene" uid="uid://diwfjcwwf3dwq" path="res://scenes/enemyScenes/shooter.tscn" id="10_osoog"]
+[ext_resource type="PackedScene" uid="uid://bepwf6na538ra" path="res://scenes/enemyScenes/drone.tscn" id="15_fnakq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8vyi1"]
 texture = ExtResource("2_kd4g8")
@@ -1874,6 +1876,7 @@ layer_1/tile_data = PackedInt32Array(196607, 0, 0, 131072, 0, 0, 262142, 131073,
 script = ExtResource("4_wv1bq")
 bullet_scene = ExtResource("5_v2p1e")
 star_bullet = ExtResource("7_4b17u")
+drone_bullet = ExtResource("8_iuejj")
 
 [node name="Vagabond" parent="." instance=ExtResource("4_c8xtf")]
 position = Vector2(6, 30)
@@ -1978,4 +1981,8 @@ text = "Almost there..."
 [node name="Shooter" parent="." instance=ExtResource("10_osoog")]
 position = Vector2(507, 62)
 
+[node name="Drone" parent="." instance=ExtResource("15_fnakq")]
+position = Vector2(99, -77)
+
 [connection signal="Shoot" from="Shooter" to="BulletManager" method="_on_shooter_shoot"]
+[connection signal="Shoot" from="Drone" to="BulletManager" method="_on_shooter_shoot"]

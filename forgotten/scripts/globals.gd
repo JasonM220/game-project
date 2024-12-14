@@ -1,3 +1,3 @@
 extends Node
 
-enum bullet_types {Normal, Star}
+enum bullet_types {Normal, Star, Vertical}

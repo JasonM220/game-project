@@ -1,13 +1,12 @@
 class_name Enemy extends CharacterBody2D
 
 
-var speed = 60
-
 var direction = 1
 
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
+@export var speed = 60
 @export var ray_cast_right: RayCast2D
 @export var ray_cast_left: RayCast2D
 @export var animated_sprite: AnimatedSprite2D
