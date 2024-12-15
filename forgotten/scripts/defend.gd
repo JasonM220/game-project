@@ -12,7 +12,7 @@ var move_state: State
 
 func enter() -> void:
 	super()
-	if parent.animations.flip_h:
+	if parent.animated_sprite.flip_h:
 		defend_zone_left.monitorable = true
 	else:
 		defend_zone_right.monitorable = true

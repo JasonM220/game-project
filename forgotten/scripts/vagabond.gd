@@ -1,10 +1,7 @@
 class_name Player
-extends CharacterBody2D
+extends GameEntity
 
-@onready
-var animations = $animations
 
-@onready var hit_box: HitBox = $HitBox
 
 @onready
 var state_machine = $state_machine
@@ -15,11 +12,14 @@ var max_health = 3
 
 var health = max_health
 
+var checkpoint_manager
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	state_machine.init(self)
 	hit_box.Damaged.connect(take_damage)
+	checkpoint_manager = get_parent().get_node("CheckpointManager")
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -13,24 +13,24 @@ var next_attack_queued: bool = false
 
 func enter() -> void:
 	super()
-	if parent.animations.flip_h:
-		parent.animations.offset = Vector2(-32, 0)
+	if parent.animated_sprite.flip_h:
+		parent.animated_sprite.offset = Vector2(-32, 0)
 		hurt_box.position = Vector2(-34, 0)
 	else:
-		parent.animations.offset = Vector2(32, 0)
+		parent.animated_sprite.offset = Vector2(32, 0)
 		hurt_box.position = Vector2(0, 0)
 	await get_tree().create_timer(0.075).timeout
 	hurt_box.monitoring = true
-	parent.animations.animation_finished.connect(_on_animations_animation_finished)
+	parent.animated_sprite.animation_finished.connect(_on_animations_animation_finished)
 
 func exit() -> void:
 	super()
-	parent.animations.offset = Vector2(0, 0)
+	parent.animated_sprite.offset = Vector2(0, 0)
 	finished = false
 	next_attack = 1
 	next_attack_queued= false
 	hurt_box.monitoring = false
-	parent.animations.animation_finished.disconnect(_on_animations_animation_finished)
+	parent.animated_sprite.animation_finished.disconnect(_on_animations_animation_finished)
 	
 
 	
@@ -54,9 +54,9 @@ func process_input(event: InputEvent) -> State:
 
 func play_next_attack() -> void:
 	if next_attack == 2:
-		parent.animations.play("attack2")
+		parent.animated_sprite.play("attack2")
 	else:
-		parent.animations.play("attack3")
+		parent.animated_sprite.play("attack3")
 	finished = false
 	next_attack_queued = false
 

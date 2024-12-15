@@ -368,11 +368,13 @@ size = Vector2(7.18619, 21.2185)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fni22"]
 size = Vector2(6.43405, 19.7182)
 
-[node name="Vagabond" type="CharacterBody2D" node_paths=PackedStringArray("hurt_sound")]
+[node name="Vagabond" type="CharacterBody2D" node_paths=PackedStringArray("hurt_sound", "animated_sprite", "hit_box")]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_xmx3j")
 hurt_sound = NodePath("AudioStreamPlayer2D")
+animated_sprite = NodePath("animations")
+hit_box = NodePath("HitBox")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
@@ -424,9 +426,10 @@ move_state = NodePath("../move")
 animation_name = "jump"
 move_speed = 150.0
 
-[node name="die" type="Node" parent="state_machine" node_paths=PackedStringArray("timer")]
+[node name="die" type="Node" parent="state_machine" node_paths=PackedStringArray("timer", "idle_state")]
 script = ExtResource("38_64pr2")
 timer = NodePath("Timer")
+idle_state = NodePath("../idle")
 animation_name = "die"
 
 [node name="Timer" type="Timer" parent="state_machine/die"]
