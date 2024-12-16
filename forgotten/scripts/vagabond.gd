@@ -21,6 +21,9 @@ func _ready() -> void:
 	hit_box.Damaged.connect(take_damage)
 	checkpoint_manager = get_parent().get_node("CheckpointManager")
 	load_checkpoint_location()
+	if has_node("Camera2D"):
+		var camera = $Camera2D
+		camera.global_position = global_position
 
 
 func _unhandled_input(event: InputEvent) -> void:

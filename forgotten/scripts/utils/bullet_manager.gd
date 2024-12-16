@@ -6,6 +6,7 @@ extends Node2D
 
 
 func _on_shooter_shoot(pos, dir, type) -> void:
+	
 	match type:
 		Globals.bullet_types.Normal:
 			var bullet = bullet_scene.instantiate()
@@ -28,5 +29,4 @@ func _on_shooter_shoot(pos, dir, type) -> void:
 			bullet.direction = dir
 			
 	
-	#bullet.add_to_group("bullets")  MIGHT NEED THIS lATER
 	

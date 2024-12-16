@@ -90,11 +90,13 @@ size = Vector2(10.5, 19)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jftek"]
 size = Vector2(10, 19)
 
-[node name="Shooter" type="CharacterBody2D" node_paths=PackedStringArray("timer", "ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box")]
+[node name="Shooter" type="CharacterBody2D" node_paths=PackedStringArray("timer", "ray_cast_down_right", "ray_cast_down_left", "ray_cast_right", "ray_cast_left", "animated_sprite", "hit_box")]
 scale = Vector2(1.55754, 1.24912)
 collision_layer = 0
 script = ExtResource("1_yjxcu")
 timer = NodePath("Timer")
+ray_cast_down_right = NodePath("RayCastDownRight")
+ray_cast_down_left = NodePath("RayCastDownLeft")
 ray_cast_right = NodePath("RayCastRight")
 ray_cast_left = NodePath("RayCastLeft")
 animated_sprite = NodePath("AnimatedSprite2D")
@@ -119,11 +121,19 @@ shape = SubResource("RectangleShape2D_5qqpx")
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -8)
-target_position = Vector2(-11, 0)
+target_position = Vector2(-7.06242, -0.00563622)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(1, -8)
-target_position = Vector2(11, 0)
+target_position = Vector2(6.06242, -0.00563622)
+
+[node name="RayCastDownRight" type="RayCast2D" parent="."]
+position = Vector2(4.49427, -5.60395)
+target_position = Vector2(0, 6.40451)
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="."]
+position = Vector2(-5.77834, -5.60395)
+target_position = Vector2(0, 6.40451)
 
 [node name="Collision" type="Area2D" parent="."]
 collision_mask = 0

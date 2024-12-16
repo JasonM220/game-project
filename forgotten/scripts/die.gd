@@ -15,6 +15,7 @@ func enter() -> void:
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1
 	died = true
+	get_tree().reload_current_scene()
 	
 func process_frame(delta: float) -> State:
 	if died:
