@@ -27,6 +27,17 @@ theme_override_fonts/font = ExtResource("2_y6ohq")
 theme_override_font_sizes/font_size = 56
 text = "Play"
 
+[node name="Load" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Quit")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_focus_color = Color(0.694118, 0.67451, 0.337255, 1)
+theme_override_fonts/font = ExtResource("2_y6ohq")
+theme_override_font_sizes/font_size = 56
+disabled = true
+text = "Load"
+
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Play")
@@ -38,4 +49,5 @@ theme_override_font_sizes/font_size = 56
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
