@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4d87pq0hgybh"]
+[gd_scene load_steps=4 format=3 uid="uid://bsbmfv7bs1kx0"]
 
 [ext_resource type="Script" path="res://scripts/utils/checkpoint.gd" id="1_ilo5s"]
+[ext_resource type="Texture2D" uid="uid://b41b0eikbtjet" path="res://assets/sprites/tileset/s4m_ur4i_huge-assetpack-tilemap.png" id="2_fw4wv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pbte"]
-size = Vector2(6, 38)
+size = Vector2(12, 38)
 
 [node name="Checkpoint" type="Area2D"]
 collision_layer = 0
@@ -11,9 +12,15 @@ collision_mask = 2
 script = ExtResource("1_ilo5s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -19)
+position = Vector2(3, -19)
 shape = SubResource("RectangleShape2D_4pbte")
 
 [node name="RespawnPoint" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, -19)
+texture = ExtResource("2_fw4wv")
+region_enabled = true
+region_rect = Rect2(128.611, 97.8879, 14.7988, 38.2357)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

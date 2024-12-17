@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bepwf6na538ra" path="res://scenes/enemyScenes/drone.tscn" id="15_fnakq"]
 [ext_resource type="PackedScene" uid="uid://wtrsl8qu76tg" path="res://scenes/enemyScenes/robo.tscn" id="15_x7i85"]
 [ext_resource type="Script" path="res://scripts/utils/checkpoint_manager.gd" id="17_qvc7v"]
-[ext_resource type="PackedScene" uid="uid://b4d87pq0hgybh" path="res://scenes/generalScenes/checkpoint.tscn" id="18_jo83i"]
+[ext_resource type="PackedScene" uid="uid://bsbmfv7bs1kx0" path="res://scenes/generalScenes/checkpoint.tscn" id="18_jo83i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8vyi1"]
 texture = ExtResource("2_kd4g8")
@@ -1936,10 +1936,10 @@ position = Vector2(297, -334)
 script = ExtResource("17_qvc7v")
 
 [node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("18_jo83i")]
-position = Vector2(793, -173)
+position = Vector2(819, -163)
 
 [node name="Checkpoint2" parent="CheckpointManager" instance=ExtResource("18_jo83i")]
-position = Vector2(-596, -58)
+position = Vector2(-596, -51)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("15_fnakq")]
 position = Vector2(-630, 386)

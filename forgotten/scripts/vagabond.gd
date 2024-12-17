@@ -6,6 +6,7 @@ extends GameEntity
 @onready
 var state_machine = $state_machine
 @onready var sword_sound: AudioStreamPlayer2D = $AudioStreamPlayer2Sword
+@onready var health_bar: ProgressBar = $HealthBar
 
 
 
@@ -13,8 +14,7 @@ var state_machine = $state_machine
 var checkpoint_manager
 
 func _ready() -> void:
-	# Initialize the state machine, passing a reference of the player to the states,
-	# that way they can move and react accordingly
+	health_bar.init_health(health)
 	state_machine.init(self)
 	checkpoint_manager = get_parent().get_node("CheckpointManager")
 	load_checkpoint_location()
@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 func take_damage(damage: int) -> void:
 	if health > 0:
 		health -= damage
+		health_bar.health = health
 		hurt_sound.play()
 		if(health <= 0):
 			state_machine.died()
