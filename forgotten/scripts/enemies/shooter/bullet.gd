@@ -1,6 +1,7 @@
 class_name Bullet extends HurtBox
 
 @export var timer: Timer
+@export var deflect_sound: AudioStreamPlayer2D
 
 var horizontal_speed = 300
 var vertical_speed = 0
@@ -36,7 +37,7 @@ func do_damage(a: Area2D) -> void:
 		a.take_damage(1)
 		queue_free()
 	if a.is_in_group("DefendZone"):
-		print("defend")
+		deflect_sound.play()
 		if Input.is_action_pressed("DeflectUp"):
 			print("defendUp")
 			vertical_speed = 300

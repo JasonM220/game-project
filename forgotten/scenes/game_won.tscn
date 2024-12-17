@@ -13,25 +13,36 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3k3e4")
 
-[node name="Label" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_right = 402.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 182.0
-offset_right = 779.0
-offset_bottom = 296.0
+offset_left = 776.0
+offset_top = 157.0
+offset_right = 1147.0
+offset_bottom = 271.0
 theme_override_fonts/font = ExtResource("1_2mogy")
 theme_override_font_sizes/font_size = 56
 text = "YOU WON"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="ColorRect"]
 layout_mode = 0
-offset_left = 441.0
-offset_top = 501.0
-offset_right = 728.0
-offset_bottom = 584.0
+offset_left = 807.0
+offset_top = 482.0
+offset_right = 1094.0
+offset_bottom = 565.0
 theme_override_fonts/font = ExtResource("2_pwvkb")
 theme_override_font_sizes/font_size = 24
 text = "Return To Menu"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

@@ -12,13 +12,12 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready() -> void:
-	hit_box.Damaged.connect(take_damage)
+	super()
 	
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	move_and_slide()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if ray_cast_right.is_colliding():
 		direction = -1
@@ -28,6 +27,6 @@ func _process(delta: float) -> void:
 		animated_sprite	.flip_h = false
 	velocity.x = direction * speed
 	
-func take_damage(_damage: int) -> void:
-	print("die")
-	queue_free()
+func take_damage(damage: int) -> void:
+	super(damage)
+	

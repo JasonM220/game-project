@@ -22,6 +22,7 @@ func enter() -> void:
 	await get_tree().create_timer(0.075).timeout
 	hurt_box.monitoring = true
 	parent.animated_sprite.animation_finished.connect(_on_animations_animation_finished)
+	parent.sword_sound.play()
 
 func exit() -> void:
 	super()
@@ -36,6 +37,7 @@ func exit() -> void:
 	
 func process_frame(delta: float) -> State:
 	if finished:
+		hurt_box.monitoring = false
 		if next_attack_queued and next_attack <= 3:
 			play_next_attack()
 			return null
@@ -53,12 +55,15 @@ func process_input(event: InputEvent) -> State:
 	
 
 func play_next_attack() -> void:
+	hurt_box.monitoring = true
 	if next_attack == 2:
 		parent.animated_sprite.play("attack2")
 	else:
 		parent.animated_sprite.play("attack3")
 	finished = false
 	next_attack_queued = false
+	parent.sword_sound.play()
+	
 
 func _on_animations_animation_finished() -> void:
 	finished = true

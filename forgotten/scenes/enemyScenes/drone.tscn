@@ -88,14 +88,14 @@ ray_cast_right = NodePath("RayCastRight")
 ray_cast_left = NodePath("RayCastLeft")
 animated_sprite = NodePath("AnimatedSprite2D")
 hit_box = NodePath("HitBox")
+max_health = 1
+health = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-9, 0)
 sprite_frames = SubResource("SpriteFrames_nqffn")
-animation = &"shoot"
+animation = &"walk"
 autoplay = "walk"
-frame = 3
-frame_progress = 1.0
 
 [node name="HitBox" type="Area2D" parent="." groups=["Enemy"]]
 collision_layer = 256

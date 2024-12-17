@@ -19,9 +19,9 @@ func enter() -> void:
 
 
 func exit() -> void:
-	super()
 	defend_zone_right.monitorable = false
 	defend_zone_left.monitorable = false
+	super()
 		
 	
 

@@ -5,12 +5,10 @@ extends GameEntity
 
 @onready
 var state_machine = $state_machine
+@onready var sword_sound: AudioStreamPlayer2D = $AudioStreamPlayer2Sword
 
-@export var hurt_sound : AudioStreamPlayer2D
 
-var max_health = 3
 
-var health = max_health
 
 var checkpoint_manager
 
@@ -18,7 +16,6 @@ func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	state_machine.init(self)
-	hit_box.Damaged.connect(take_damage)
 	checkpoint_manager = get_parent().get_node("CheckpointManager")
 	load_checkpoint_location()
 	if has_node("Camera2D"):

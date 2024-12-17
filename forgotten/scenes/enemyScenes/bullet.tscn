@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2rkjkd6n6b6q"]
+[gd_scene load_steps=8 format=3 uid="uid://c2rkjkd6n6b6q"]
 
 [ext_resource type="Texture2D" uid="uid://d2v7wjy2lrux3" path="res://assets/sprites/Purple Effect and Bullet 16x16.png" id="1_qcvq5"]
 [ext_resource type="Script" path="res://scripts/enemies/shooter/bullet.gd" id="1_u0bxy"]
+[ext_resource type="AudioStream" uid="uid://b6eu2xuuwy4fa" path="res://assets/sounds/deflect.mp3" id="3_e4bev"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o002u"]
 atlas = ExtResource("1_qcvq5")
@@ -31,11 +32,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_30yob"]
 radius = 6.0
 
-[node name="Bullet" type="Area2D" node_paths=PackedStringArray("timer")]
+[node name="Bullet" type="Area2D" node_paths=PackedStringArray("timer", "deflect_sound")]
 collision_layer = 0
 collision_mask = 263
 script = ExtResource("1_u0bxy")
 timer = NodePath("Timer")
+deflect_sound = NodePath("AudioStreamPlayer2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p28rg")
@@ -47,6 +49,10 @@ shape = SubResource("CircleShape2D_30yob")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_e4bev")
+bus = &"SFX"
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$VBoxContainer/Play.grab_focus()
+	$ColorRect/VBoxContainer/Play.grab_focus()
 	update_load_button_state()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,4 +36,4 @@ func delete_checkpoint_file() -> void:
 		
 func update_load_button_state() -> void:
 	var file_path = "res://checkpoint_data.cfg"
-	$VBoxContainer/Load.disabled = not FileAccess.file_exists(file_path)
+	$ColorRect/VBoxContainer/Load.disabled = not FileAccess.file_exists(file_path)

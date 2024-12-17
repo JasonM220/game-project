@@ -12,6 +12,9 @@ var bullet: Globals.bullet_types = Globals.bullet_types.Normal
 
 var can_shoot = true
 
+func _ready() -> void:
+	super()
+
 func _process(delta: float) -> void:
 	super(delta)
 	check_edge()

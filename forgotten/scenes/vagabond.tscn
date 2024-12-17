@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://j24yk617pp11"]
+[gd_scene load_steps=93 format=3 uid="uid://j24yk617pp11"]
 
 [ext_resource type="Script" path="res://scripts/vagabond.gd" id="1_xmx3j"]
 [ext_resource type="Texture2D" uid="uid://b1mcjxenf0ich" path="res://assets/sprites/vagabond/attack/attack01.png" id="2_4mtf6"]
@@ -85,6 +85,7 @@
 [ext_resource type="Script" path="res://scripts/defend.gd" id="62_th5cy"]
 [ext_resource type="Script" path="res://scenes/generalScenes/hurtbox.gd" id="63_7jkd0"]
 [ext_resource type="Script" path="res://scenes/generalScenes/hitbox.gd" id="85_3xc43"]
+[ext_resource type="AudioStream" uid="uid://cty3tijjafilm" path="res://assets/sounds/sword.mp3" id="86_mxx5k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teqna"]
 animations = [{
@@ -368,13 +369,15 @@ size = Vector2(7.18619, 21.2185)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fni22"]
 size = Vector2(6.43405, 19.7182)
 
-[node name="Vagabond" type="CharacterBody2D" node_paths=PackedStringArray("hurt_sound", "animated_sprite", "hit_box")]
+[node name="Vagabond" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "hit_box", "hurt_sound")]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_xmx3j")
-hurt_sound = NodePath("AudioStreamPlayer2D")
 animated_sprite = NodePath("animations")
 hit_box = NodePath("HitBox")
+hurt_sound = NodePath("AudioStreamPlayer2D")
+max_health = 3
+health = 3
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
@@ -472,7 +475,7 @@ script = ExtResource("85_3xc43")
 position = Vector2(-1, -10)
 shape = SubResource("RectangleShape2D_mn4tt")
 
-[node name="DefendZoneRight" type="Area2D" parent="." groups=["DefendZone"]]
+[node name="DefendZoneRight" type="Area2D" parent="." groups=["DefendZone", "DefendZoneRight"]]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
@@ -484,7 +487,7 @@ rotation = -0.807455
 shape = SubResource("RectangleShape2D_ugygc")
 debug_color = Color(0, 0.648922, 0.163958, 0.42)
 
-[node name="DefendZoneLeft" type="Area2D" parent="." groups=["DefendZone"]]
+[node name="DefendZoneLeft" type="Area2D" parent="." groups=["DefendZone", "DefendZoneLeft"]]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
@@ -495,5 +498,9 @@ position = Vector2(-9.3111, -8.56786)
 rotation = 0.744121
 shape = SubResource("RectangleShape2D_fni22")
 debug_color = Color(0, 0.64138, 0.335232, 0.42)
+
+[node name="AudioStreamPlayer2Sword" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("86_mxx5k")
+bus = &"SFX"
 
 [connection signal="timeout" from="state_machine/die/Timer" to="state_machine/die" method="_on_timer_timeout"]

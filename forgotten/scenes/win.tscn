@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://hlg8at27ltbr"]
+[gd_scene load_steps=4 format=3 uid="uid://hlg8at27ltbr"]
 
 [ext_resource type="Script" path="res://win.gd" id="1_1lvk2"]
+[ext_resource type="Texture2D" uid="uid://b41b0eikbtjet" path="res://assets/sprites/tileset/s4m_ur4i_huge-assetpack-tilemap.png" id="2_6jmkc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4uj6p"]
-size = Vector2(77, 141)
+size = Vector2(77, 39)
 
 [node name="Win" type="Area2D"]
 collision_layer = 0
@@ -11,7 +12,13 @@ collision_mask = 2
 script = ExtResource("1_1lvk2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(28.5, 60.5)
+position = Vector2(28.5, 111.5)
 shape = SubResource("RectangleShape2D_4uj6p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 114)
+texture = ExtResource("2_6jmkc")
+region_enabled = true
+region_rect = Rect2(228.77, 367, 76.7653, 34.602)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

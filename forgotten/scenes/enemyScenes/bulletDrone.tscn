@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://df51mtp3ft8w1"]
+[gd_scene load_steps=9 format=3 uid="uid://df51mtp3ft8w1"]
 
 [ext_resource type="Script" path="res://scripts/enemies/drone/drone_bullet.gd" id="1_5i87w"]
 [ext_resource type="Texture2D" uid="uid://d2v7wjy2lrux3" path="res://assets/sprites/Purple Effect and Bullet 16x16.png" id="2_sn64b"]
+[ext_resource type="AudioStream" uid="uid://b6eu2xuuwy4fa" path="res://assets/sounds/deflect.mp3" id="3_yi7rg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ar63h"]
 atlas = ExtResource("2_sn64b")
@@ -35,11 +36,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqcaq"]
 radius = 7.0
 
-[node name="DroneBullet" type="Area2D" node_paths=PackedStringArray("timer")]
+[node name="DroneBullet" type="Area2D" node_paths=PackedStringArray("timer", "deflect_sound")]
 collision_layer = 0
 collision_mask = 263
 script = ExtResource("1_5i87w")
 timer = NodePath("Timer")
+deflect_sound = NodePath("AudioStreamPlayer2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p1cvs")
@@ -50,6 +52,10 @@ frame_progress = 0.58733
 shape = SubResource("CircleShape2D_tqcaq")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yi7rg")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

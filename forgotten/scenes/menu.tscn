@@ -8,17 +8,31 @@ layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = -57.0
+offset_right = 659.0
 grow_vertical = 0
 script = ExtResource("1_hx1b5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-offset_left = 45.0
-offset_top = -303.0
-offset_right = 284.0
-offset_bottom = -112.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = -1050.0
+offset_right = 1423.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.243137, 0.14902, 0.270588, 1)
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+offset_left = 166.0
+offset_top = 580.0
+offset_right = 405.0
+offset_bottom = 780.0
+
+[node name="Play" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
 theme_type_variation = &"FlatButton"
@@ -27,7 +41,7 @@ theme_override_fonts/font = ExtResource("2_y6ohq")
 theme_override_font_sizes/font_size = 56
 text = "Play"
 
-[node name="Load" type="Button" parent="VBoxContainer"]
+[node name="Load" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Play")
 focus_neighbor_bottom = NodePath("../Quit")
@@ -38,7 +52,7 @@ theme_override_font_sizes/font_size = 56
 disabled = true
 text = "Load"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Play")
 theme_type_variation = &"FlatButton"
@@ -48,6 +62,16 @@ theme_override_fonts/font = ExtResource("2_y6ohq")
 theme_override_font_sizes/font_size = 56
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_load_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 138.0
+offset_right = 1343.0
+offset_bottom = 217.0
+theme_override_fonts/font = ExtResource("2_y6ohq")
+theme_override_font_sizes/font_size = 78
+text = "VAGABOND"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
